@@ -6,7 +6,7 @@
 #    By: anguinau <constantasg@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 22:18:31 by anguinau          #+#    #+#              #
-#    Updated: 2022/07/04 22:23:39 by anguinau         ###   ########.fr        #
+#    Updated: 2022/07/04 23:00:36 by anguinau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRCSDIR			=	srcs
 INCLUDESDIR		=	includes
 OBJSDIR			=	objs
 OBJS_SUBDIR		=	$(shell find $(SRCSDIR) -type d | grep '/' | sed 's/srcs/objs/g')
-CFLAGS			=	-Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -fsanitize=address
 CC				=	gcc
 RM				=	rm -rf
 
@@ -128,6 +128,15 @@ $(NAME)			:	$(LIB) $(OBJSDIR) $(OBJS_SUBDIR) $(OBJS)
 					@$(eval $(call update_bar))
 
 $(LIB)			:	$(L_SRCS) $(L_OBJS) $(L_INCLUDES)
+					@cd ressources/libft && $(MAKE)
+
+$(L_SRCS)		:
+					@cd ressources/libft && $(MAKE)
+
+$(L_OBJS)		:
+					@cd ressources/libft && $(MAKE)
+
+$(L_INCLUDES)	:
 					@cd ressources/libft && $(MAKE)
 
 $(OBJSDIR)		:

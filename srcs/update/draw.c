@@ -6,7 +6,7 @@
 /*   By: anguinau <constantasg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 02:25:52 by anguinau          #+#    #+#             */
-/*   Updated: 2022/07/04 22:24:52 by anguinau         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:27:14 by anguinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	put_from_tex(int x, int y, int i, int j)
 	j = (y - (data())->draw_start) * ((data())->tex->height
 			/ ((data())->draw_end - (data())->draw_start));
 	// Find i
-	(void)i;
 	mlx_pixel_put((data())->mlx.ptr, (data())->mlx.win, x, y,
 		*(unsigned int *)((data())->tex->addr
 			+ (j * (data())->tex->line_length + i

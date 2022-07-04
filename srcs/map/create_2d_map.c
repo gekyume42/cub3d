@@ -6,7 +6,7 @@
 /*   By: anguinau <constantasg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 02:36:43 by anguinau          #+#    #+#             */
-/*   Updated: 2022/07/03 20:08:52 by anguinau         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:32:02 by anguinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int	create_2d_map(int i, int j, int k, int l)
 	(data())->map.map = malloc(sizeof(int *) * (j + 1));
 	if (!(data())->map.map)
 		return (0);
+	(data())->map.map_size = j;
 	(data())->map.map[j] = NULL;
 	i = 0;
 	j = -1;

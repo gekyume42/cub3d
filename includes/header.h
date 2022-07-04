@@ -6,7 +6,7 @@
 /*   By: anguinau <constantasg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 22:28:05 by anguinau          #+#    #+#             */
-/*   Updated: 2022/07/04 21:57:50 by anguinau         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:31:23 by anguinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_map
 	char	*map_infos;
 	int		c_color;
 	int		f_color;
+	int		map_size;
 	t_img	*n_tex;
 	t_img	*s_tex;
 	t_img	*e_tex;

@@ -6,7 +6,7 @@
 /*   By: anguinau <constantasg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 18:33:13 by anguinau          #+#    #+#             */
-/*   Updated: 2022/07/03 20:57:16 by anguinau         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:47:27 by anguinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,18 @@ void	move_right(void)
 {
 	if ((data())->move_right)
 	{
-		if ((data())->map.map[(int)((data())->pos_x + ((data())->dir_x
-					* cos(M_PI / -2) - (data())->dir_y * sin(M_PI / -2)) * 0.1)]
-				[(int)(data())->pos_y] != 2)
+		if ((data())->pos_x + (((data())->dir_x * cos(M_PI / -2)
+					- (data())->dir_y * sin(M_PI / -2)) * 0.1)
+			< (data())->map.map_size
+			&& (data())->pos_x + (((data())->dir_x * cos(M_PI / -2)
+					- (data())->dir_y * sin(M_PI / -2)) * 0.1) >= 0)
 			(data())->pos_x += ((data())->dir_x * cos(M_PI / -2)
 					- (data())->dir_y * sin(M_PI / -2)) * 0.1;
-		if ((data())->map.map[(int)(data())->pos_x][(int)((data())->pos_y
-			+ ((data())->dir_x * sin(M_PI / -2) + (data())->dir_y
-				* cos(M_PI / -2)) * 0.1)] != 2)
+		if ((data())->pos_y + (((data())->dir_x * sin(M_PI / -2)
+					+ (data())->dir_y * cos(M_PI / -2)) * 0.1) >= 0
+			&& (data())->map.map[(int)(data())->pos_x]
+			[(int)((data())->pos_y + (((data())->dir_x * sin(M_PI / -2)
+					+ (data())->dir_y * cos(M_PI / -2)) * 0.1))] != -1)
 			(data())->pos_y += ((data())->dir_x * sin(M_PI / -2)
 					+ (data())->dir_y * cos(M_PI / -2)) * 0.1;
 	}
@@ -75,14 +79,18 @@ void	move_left(void)
 {
 	if ((data())->move_left)
 	{
-		if ((data())->map.map[(int)((data())->pos_x + ((data())->dir_x
-					* cos(M_PI / 2) - (data())->dir_y * sin(M_PI / 2)) * 0.1)]
-					[(int)(data())->pos_y] != 2)
+		if ((data())->pos_x + (((data())->dir_x * cos(M_PI / 2)
+					- (data())->dir_y * sin(M_PI / 2)) * 0.1)
+			< (data())->map.map_size
+			&& (data())->pos_x + (((data())->dir_x * cos(M_PI / 2)
+					- (data())->dir_y * sin(M_PI / 2)) * 0.1) >= 0)
 			(data())->pos_x += ((data())->dir_x * cos(M_PI / 2)
 					- (data())->dir_y * sin(M_PI / 2)) * 0.1;
-		if ((data())->map.map[(int)(data())->pos_x][(int)((data())->pos_y
-		+ ((data())->dir_x * sin(M_PI / 2) + (data())->dir_y * cos(M_PI / 2))
-		* 0.1)] != 2)
+		if ((data())->pos_y + (((data())->dir_x * sin(M_PI / 2)
+					+ (data())->dir_y * cos(M_PI / 2)) * 0.1) >= 0
+			&& (data())->map.map[(int)(data())->pos_x]
+			[(int)((data())->pos_y + (((data())->dir_x * sin(M_PI / 2)
+					+ (data())->dir_y * cos(M_PI / 2)) * 0.1))] != -1)
 			(data())->pos_y += ((data())->dir_x * sin(M_PI / 2)
 					+ (data())->dir_y * cos(M_PI / 2)) * 0.1;
 	}
@@ -94,20 +102,22 @@ void	move(void)
 	(data())->moved = 0;
 	if ((data())->move_up)
 	{
-		if ((data())->map.map[(int)((data())->pos_x + (data())->dir_x * 0.2)]
-			[(int)(data())->pos_y] != 2)
+		if ((data())->pos_x + ((data())->dir_x * 0.2) < (data())->map.map_size
+			&& (data())->pos_x + ((data())->dir_x * 0.2) >= 0)
 			(data())->pos_x += (data())->dir_x * 0.2;
-		if ((data())->map.map[(int)(data())->pos_x]
-			[(int)((data())->pos_y + (data())->dir_y * 0.2)] != 2)
+		if ((data())->pos_y + ((data())->dir_y * 0.2) >= 0
+			&& (data())->map.map[(int)(data())->pos_x]
+			[(int)((data())->pos_y + ((data())->dir_y * 0.2))] != -1)
 			(data())->pos_y += (data())->dir_y * 0.2;
 	}
 	if ((data())->move_down)
 	{
-		if ((data())->map.map[(int)((data())->pos_x - (data())->dir_x * 0.1)]
-			[(int)(data())->pos_y] != 2)
+		if ((data())->pos_x - ((data())->dir_x * 0.1) < (data())->map.map_size
+			&& (data())->pos_x - ((data())->dir_x * 0.1) >= 0)
 			(data())->pos_x -= (data())->dir_x * 0.1;
-		if ((data())->map.map[(int)(data())->pos_x]
-			[(int)((data())->pos_y - (data())->dir_y * 0.1)] != 2)
+		if ((data())->pos_y - ((data())->dir_y * 0.1) >= 0
+			&& (data())->map.map[(int)(data())->pos_x]
+			[(int)((data())->pos_y - ((data())->dir_y * 0.1))] != -1)
 			(data())->pos_y -= (data())->dir_y * 0.1;
 	}
 	move_left();
