@@ -6,7 +6,7 @@
 #    By: anguinau <constantasg@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 22:18:31 by anguinau          #+#    #+#              #
-#    Updated: 2022/06/30 23:42:34 by anguinau         ###   ########.fr        #
+#    Updated: 2022/07/04 22:23:39 by anguinau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRCSDIR			=	srcs
 INCLUDESDIR		=	includes
 OBJSDIR			=	objs
 OBJS_SUBDIR		=	$(shell find $(SRCSDIR) -type d | grep '/' | sed 's/srcs/objs/g')
-CFLAGS			=	-Wall -Wextra -Werror -fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -g #-fsanitize=address
 CC				=	gcc
 RM				=	rm -rf
 
@@ -118,7 +118,7 @@ endef
 
 all				:	$(NAME)
 
-$(NAME)			:	$(LIB) $(L_SRCS) $(L_OBJS) $(L_INCLUDES) $(OBJSDIR) $(OBJS_SUBDIR) $(OBJS) 
+$(NAME)			:	$(LIB) $(OBJSDIR) $(OBJS_SUBDIR) $(OBJS) 
 					@${CC} $(CFLAGS) ${OBJS} $(LIB) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${NAME}
 					@$(eval INDEX=$(shell echo $$(($(INDEX)+1))))
 					@$(eval BUILD_SIZE=$(shell echo $$(($(BUILD_SIZE)+1))))
@@ -127,16 +127,7 @@ $(NAME)			:	$(LIB) $(L_SRCS) $(L_OBJS) $(L_INCLUDES) $(OBJSDIR) $(OBJS_SUBDIR) $
 					@echo -e '	[$(_GREEN)100%$(_STOP)]'
 					@$(eval $(call update_bar))
 
-$(LIB)			:
-					@cd ressources/libft && $(MAKE)
-
-$(L_SRCS)		:
-					@cd ressources/libft && $(MAKE)
-
-$(L_OBJS)		:
-					@cd ressources/libft && $(MAKE)
-
-$(L_INCLUDES)	:
+$(LIB)			:	$(L_SRCS) $(L_OBJS) $(L_INCLUDES)
 					@cd ressources/libft && $(MAKE)
 
 $(OBJSDIR)		:

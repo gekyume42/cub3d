@@ -6,7 +6,7 @@
 /*   By: anguinau <constantasg@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 01:59:48 by anguinau          #+#    #+#             */
-/*   Updated: 2022/06/30 02:04:55 by anguinau         ###   ########.fr       */
+/*   Updated: 2022/07/03 18:26:15 by anguinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	exit_proprely(int print)
 
 	i = -1;
 	free_textures();
+	mlx_destroy_window((data())->mlx.ptr, (data())->mlx.win);
 	if ((data())->map.map_infos)
 		free((data())->map.map_infos);
 	if ((data())->map.map)
